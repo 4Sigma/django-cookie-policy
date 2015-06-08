@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>Django-cookie-policy by dcosentino</title>
+    <title>Django-cookie-policy by 4Sigma</title>
   </head>
 
   <body>
@@ -19,9 +19,9 @@
         <h2>A  reusable application for managing visitors consent with respect to the cookies law in Django project.</h2>
 
         <section id="downloads">
-          <a href="https://github.com/dcosentino/django-cookie-policy/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/dcosentino/django-cookie-policy/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/dcosentino/django-cookie-policy" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+          <a href="https://github.com/4Sigma/django-cookie-policy/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/4Sigma/django-cookie-policy/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/4Sigma/django-cookie-policy" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
         </section>
       </div>
     </header>
@@ -31,16 +31,19 @@
         <h1>
 <a id="django-cookie-policy" class="anchor" href="#django-cookie-policy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Django cookie policy</h1>
 
-<p>django-cookie-policy is a reusable application for managing visitors consent with respect to the cookies law in Django project.
-It allows a server side control of all the feature of the website that are cookie-related.</p>
+<p>django-cookie-policy is a reusable application for managing visitors consent
+with respect to the cookies law in Django project. It allows a server side
+control of all the feature of the website that are cookie-related.</p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li><p>a variable called <code>cookie_accepted</code> is added automatically to all the templates</p></li>
-<li><p>cookie acceptance banner and cookie policy page are already availbale for customization</p></li>
+<li><p>cookie acceptance banner and cookie policy page are already available for customization</p></li>
 <li><p>cookies are stored in the visitor browser</p></li>
+<li><p>a decorator (<code>cookie_policy.decorators.cookie_policy</code>) that can be used to
+redirect the visitor to the cookie policy page when it has not been accepted.</p></li>
 </ul>
 
 <h2>
@@ -48,8 +51,9 @@ It allows a server side control of all the feature of the website that are cooki
 
 <ol>
 <li><p>Add <code>cookie_policy</code> to your <code>INSTALLED_APPS</code>.</p></li>
-<li><p>Add <code>django.core.context_processors.request</code>
-to <code>TEMPLATE_CONTEXT_PROCESSORS</code> if it is not already added.</p></li>
+<li><p>Add <code>django.core.context_processors.request</code> (if it is not already present)
+and <code>cookie_policy.context_processor.cookie_policy</code> to
+<code>TEMPLATE_CONTEXT_PROCESSORS</code>.</p></li>
 <li>
 <p>Include django-cookie-policy urls in <code>urls.py</code>::</p>
 
@@ -62,10 +66,9 @@ to <code>TEMPLATE_CONTEXT_PROCESSORS</code> if it is not already added.</p></li>
 
 <p>In order to display the cookie policy banner, just add the following lines to your templates:</p>
 
-<pre><code>{% if not cookie_accepted %}
+<p><code>{% if not cookie_accepted %}
 {% include 'cookie_policy/banner.html' %}
-{% endif %}
-</code></pre>
+{% endif %}</code></p>
       </section>
     </div>
 
